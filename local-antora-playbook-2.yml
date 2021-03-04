@@ -1,0 +1,63 @@
+site:
+  title: Neo4j GraphAcademy
+  start_page: online-training::index.adoc
+  url: http://localhost:8080
+
+content:
+  sources:
+    - url: .
+      branches: 'HEAD'
+
+      start_paths:
+      - 'modules/home'
+      - 'modules/4.0-overview'
+      - 'modules/4.0-querying'
+      - 'modules/4.0-updating'
+      - 'modules/4.0-best-practices'
+      - 'modules/4.0-importing-data'
+      - 'modules/graph-data-modeling'
+      - 'modules/4.0-implementing-graph-data-models'
+      - 'modules/4.0-neo4j-admin'
+      - 'modules/4.0-cypher-query-tuning'
+      - 'modules/4.0-intro-graph-algos'
+      - 'modules/gds-data-science'
+      - 'modules/gds-applied-algos'
+      - 'modules/4.0-intro-neo4j'
+      - 'modules/online-training-v2'
+      - 'modules/neo4j-administration'
+      - 'modules/datascience'
+      - 'modules/applied-algos'
+
+
+output:
+  dir: ./public/
+
+ui:
+  bundle:
+    url: https://s3-eu-west-1.amazonaws.com/static-content.neo4j.com/build/ui-bundle.zip
+    snapshot: true
+
+urls:
+  html_extension_style: indexify
+
+asciidoc:
+  attributes:
+    experimental: ''
+    page-component: training
+    page-theme: training
+    page-disabletracking: true
+    page-breadcrumbs:
+      - name: Neo4j Training
+        url: /online-training
+
+extensions:
+  - path: '@djencks/antora-source-watch'
+    config:
+      sources:
+        - url: .
+          start-path-includes: modules/datascience,modules/4.0-best-practices
+  - path: '@djencks/antora-site-manifest'
+    config:
+      import-manifests:
+        - primary-site-manifest-url: ./public/site-manifest.json
+      partial-components: true
